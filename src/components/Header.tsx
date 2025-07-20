@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
 import ExpandableSearch from '@/components/ExpandableSearch';
+import SearchBar from '@/components/SearchBar';
 
 export default function Header() {
   return (
@@ -9,7 +10,7 @@ export default function Header() {
         <h1 className='text-3xl font-bold'>minjoo.dev</h1>
       </Link>
       <nav className='flex items-center gap-4'>
-        <ExpandableSearch />
+        <SearchBar />
         <a href='https://github.com/Minjoo522' target='_blank' rel='noopener noreferrer'>
           <BsGithub size={20} />
         </a>
