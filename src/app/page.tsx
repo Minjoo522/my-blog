@@ -1,13 +1,16 @@
 import Hero from '@/components/Hero';
-import PostList from '@/components/posts/PostList';
+import { getAllPosts } from '@/service/posts';
+import FilterablePosts from '@/components/posts/FilterablePosts';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await getAllPosts();
+
   return (
     <div className='flex items-start gap-10'>
       <div>
         <Hero />
       </div>
-      <PostList />
+      <FilterablePosts posts={posts} />
     </div>
   );
 }

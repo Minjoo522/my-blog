@@ -1,7 +1,11 @@
 import PostCard from '@/components/posts/PostCard';
-import { posts } from '@/app/data/posts';
+import { Post } from '@/service/posts';
 
-export default function PostList() {
+type Props = {
+  posts: Post[];
+};
+
+export default function PostList({ posts }: Props) {
   return (
     <section>
       {posts.map((post) => (
