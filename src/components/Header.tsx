@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
-import ExpandableSearch from '@/components/ExpandableSearch';
 import SearchBar from '@/components/SearchBar';
+import DarkModeToggle from '@/components/DarkModeToggle';
 
 export default function Header() {
   return (
