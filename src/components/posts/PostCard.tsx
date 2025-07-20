@@ -1,5 +1,5 @@
 import PostCardImage from '@/components/posts/PostCardImage';
-import CategoryButton from '@/components/CategoryButton';
+import CategoryButton from '@/components/categories/CategoryButton';
 import Link from 'next/link';
 import { Post } from '@/service/posts';
 
