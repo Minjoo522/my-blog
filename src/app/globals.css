@@ -1,7 +1,27 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+    :root {
+        --bg: #f9fafb;
+        --text: #1f2937;
+        --border: #e5e7eb;
+        --icon: #4b5563;
+    }
+
+    .dark {
+        --bg: #343541;
+        --text: #f3f4f6;
+        --border: #4b5563;
+        --icon: #9ca3af;
+    }
+}
+
 html,
 body {
     height: 100vh;
     overflow-y: auto;
+    background-color: var(--bg);
+    color: var(--text);
 }

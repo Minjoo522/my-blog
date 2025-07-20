@@ -5,7 +5,7 @@ import DarkModeToggle from '@/components/DarkModeToggle';
 
 export default function Header() {
   return (
-    <header className='flex items-center justify-between px-10 py-2'>
+    <header className='flex items-center justify-between px-10 py-5'>
       <Link href='/'>
         <h1 className='text-3xl font-bold'>minjoo.dev</h1>
       </Link>
@@ -14,6 +14,7 @@ export default function Header() {
         <a href='https://github.com/Minjoo522' target='_blank' rel='noopener noreferrer'>
           <BsGithub size={20} />
         </a>
+        <DarkModeToggle />
       </nav>
     </header>
   );
