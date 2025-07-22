@@ -3,13 +3,33 @@ import Image from 'next/image';
 import CategoryButton from '@/components/categories/CategoryButton';
 import NotionPost from '@/components/posts/NotionPost';
 import { fetchNotionPage } from '@/service/notion';
+import { Metadata, ResolvingMetadata } from 'next';
 import AdjacentPostCard from '@/components/AdjacentPostCard';
+import { SITE_URL } from '@/constants/constants';
 
 type Props = {
   params: {
     slug: string;
   };
 };
+
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
+  const { slug } = params;
+
+  const { title, description, imageUrl, notionPageId } = await getPostData(slug);
+
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title,
+    description,
+    openGraph: {
+      url: `${SITE_URL}/posts/${notionPageId}`,
+      images: imageUrl && [`${SITE_URL}${imageUrl}`, ...previousImages],
+    },
+  };
+}
 
 export default async function PostPage(props: Props) {
   const params = await props.params;
