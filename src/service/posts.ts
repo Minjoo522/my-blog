@@ -11,6 +11,11 @@ export type Post = {
   imageUrl?: string;
 };
 
+export type PostData = Post & {
+  next: Post | null;
+  prev: Post | null;
+};
+
 export async function getAllPosts(): Promise<Post[]> {
   const filePath = path.join(process.cwd(), 'data', 'posts.json');
   return readFile(filePath, 'utf-8')
@@ -18,10 +23,14 @@ export async function getAllPosts(): Promise<Post[]> {
     .then((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)));
 }
 
-export async function getPostData(notionPageId: string): Promise<Post> {
-  const metadata = await getAllPosts().then((posts) => posts.find((post) => post.notionPageId === notionPageId));
+export async function getPostData(notionPageId: string): Promise<PostData> {
+  const posts = await getAllPosts();
+  const post = posts.find((post) => post.notionPageId === notionPageId);
 
-  if (!metadata) throw new Error(`post not found: ${notionPageId}`);
+  if (!post) throw new Error(`post not found: ${notionPageId}`);
 
-  return metadata;
+  const index = posts.indexOf(post);
+  const next = index > 0 ? posts[index - 1] : null;
+  const prev = index < posts.length - 1 ? posts[index + 1] : null;
+  return { ...post, next, prev };
 }

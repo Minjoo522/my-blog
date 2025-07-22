@@ -3,6 +3,7 @@ import Image from 'next/image';
 import CategoryButton from '@/components/categories/CategoryButton';
 import NotionPost from '@/components/posts/NotionPost';
 import { fetchNotionPage } from '@/service/notion';
+import AdjacentPostCard from '@/components/AdjacentPostCard';
 
 type Props = {
   params: {
@@ -14,7 +15,7 @@ export default async function PostPage(props: Props) {
   const params = await props.params;
   const { slug } = params;
 
-  const { title, date, category, imageUrl, notionPageId } = await getPostData(slug);
+  const { title, date, category, imageUrl, notionPageId, next, prev } = await getPostData(slug);
 
   const recordMap = await fetchNotionPage(notionPageId);
 
@@ -31,7 +32,13 @@ export default async function PostPage(props: Props) {
           <p className='mt-1 text-sm text-white/80'>{date}</p>
         </div>
       </div>
-      <NotionPost recordMap={recordMap} />
+      <section className='mb-20'>
+        <NotionPost recordMap={recordMap} />
+      </section>
+      <section className='flex shadow-md'>
+        {prev && <AdjacentPostCard post={prev} type='prev' />}
+        {next && <AdjacentPostCard post={next} type='next' />}
+      </section>
     </article>
   );
 }
