@@ -33,3 +33,12 @@ body {
 .notion-h {
     width: 100% !important;
 }
+
+.notion-quote {
+    border-left: 3px solid #d4d4d8 !important;
+    font-size: 1em !important;
+}
+
+.notion-simple-table td {
+    border: 1px solid var(--fg-color-1) !important;
+}
