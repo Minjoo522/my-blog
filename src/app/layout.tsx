@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import 'react-notion-x/src/styles.css';
+import 'prismjs/themes/prism-tomorrow.css';
 import { Open_Sans } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 const sans = Open_Sans({ subsets: ['latin'] });
 
@@ -19,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang='en' className={sans.className}>
       <body className='max mx-auto flex w-full flex-col'>
-        <Header />
-        <main className='grow p-10'>{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          <main className='grow'>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

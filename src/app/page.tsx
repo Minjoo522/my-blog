@@ -8,7 +8,7 @@ export default async function HomePage() {
   const categories = [...new Set(posts.flatMap((p) => (p.category ? [p.category] : [])))];
 
   return (
-    <div className='flex items-start gap-10'>
+    <div className='flex items-start gap-10 px-50 py-10'>
       <div className='flex flex-col gap-5'>
         <Hero />
         <Categories categories={categories} />

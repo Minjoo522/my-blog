@@ -6,6 +6,7 @@ export type Post = {
   title: string;
   description: string;
   date: string;
+  notionPageId: string;
   category?: string;
   imageUrl?: string;
 };
@@ -15,4 +16,12 @@ export async function getAllPosts(): Promise<Post[]> {
   return readFile(filePath, 'utf-8')
     .then<Post[]>(JSON.parse)
     .then((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)));
+}
+
+export async function getPostData(notionPageId: string): Promise<Post> {
+  const metadata = await getAllPosts().then((posts) => posts.find((post) => post.notionPageId === notionPageId));
+
+  if (!metadata) throw new Error(`post not found: ${notionPageId}`);
+
+  return metadata;
 }
