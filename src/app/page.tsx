@@ -5,7 +5,7 @@ import Categories from '@/components/categories/Categories';
 
 export default async function HomePage() {
   const posts = await getAllPosts();
-  const categories = [...new Set(posts.flatMap((p) => (p.category ? [p.category] : [])))];
+  const categories = ['All Categories', ...new Set(posts.flatMap((p) => (p.category ? [p.category] : [])))];
 
   return (
     <div className='flex items-start gap-10 px-50 py-10'>

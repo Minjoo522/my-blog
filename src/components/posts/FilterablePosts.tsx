@@ -3,6 +3,7 @@
 import { Post } from '@/service/posts';
 import PostList from '@/components/posts/PostList';
 import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 type Props = {
   posts: Post[];
@@ -10,8 +11,16 @@ type Props = {
 
 export default function FilterablePosts({ posts }: Props) {
   const searchParams = useSearchParams();
-  const selected = searchParams.get('category');
-  const filtered = selected ? posts.filter((post) => post.category === selected) : posts;
+  const category = searchParams.get('category');
+  const keyword = searchParams.get('keyword')?.toLowerCase();
+
+  const filtered = useMemo(() => {
+    return posts.filter((post) => {
+      const matchCategory = category && category !== 'All Categories' ? post.category === category : true;
+      const matchKeyword = keyword ? post.title.toLowerCase().includes(keyword) : true;
+      return matchCategory && matchKeyword;
+    });
+  }, [category, keyword, posts]);
 
   return (
     <section>

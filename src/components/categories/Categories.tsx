@@ -28,9 +28,6 @@ export default function Categories({ categories }: Props) {
     <section className='w-full'>
       <h2 className='mb-4 text-lg font-semibold'>Categories</h2>
       <ul className='flex flex-col gap-2'>
-        <li>
-          <CategoryNavButton label='All Posts' selected={!selected} onClick={() => onClick(undefined)} />
-        </li>
         {categories.map((category) => (
           <li key={category}>
             <CategoryNavButton label={category} selected={selected === category} onClick={() => onClick(category)} />
