@@ -37,6 +37,7 @@ export default function SearchBar() {
     <div className='relative flex h-10 w-64 items-center rounded-full border border-gray-200 bg-white px-4 shadow-sm'>
       <FiSearch size={18} className='text-gray-500' />
       <input
+        autoFocus
         type='text'
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}

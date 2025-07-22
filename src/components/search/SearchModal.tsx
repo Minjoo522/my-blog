@@ -1,7 +1,16 @@
+'use client';
+
 import { BsX } from 'react-icons/bs';
 import SearchBar from '@/components/search/SearchBar';
+import { useEffect, useRef } from 'react';
 
 export default function SearchModal({ onClose }: { onClose: () => void }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <div className='fixed inset-0 z-[9999] flex items-center justify-center bg-white/90 backdrop-blur-md dark:bg-zinc-900/90'>
       <button
