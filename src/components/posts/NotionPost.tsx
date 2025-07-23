@@ -14,6 +14,10 @@ type Props = {
 const Code = dynamic(
   () =>
     import('react-notion-x/build/third-party/code').then(async (m) => {
+      if (!m || typeof window === 'undefined') {
+        return () => null; // fallback component
+      }
+
       // additional prism syntaxes
       await Promise.all([
         // @ts-expect-error ignore no prisma types
@@ -79,7 +83,9 @@ const Code = dynamic(
         // @ts-expect-error ignore no prisma types
         import('prismjs/components/prism-yaml.js'),
       ]);
-      return m.Code;
+      return {
+        default: m.Code,
+      };
     }),
   { ssr: false },
 );
