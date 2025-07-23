@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import profileImage from '../../public/images/profile.jpg';
 
 export default function Hero() {
   return (
@@ -7,7 +6,7 @@ export default function Hero() {
       <div className='h-24 w-24 shrink-0 overflow-hidden rounded-full md:h-28 md:w-28 xl:h-40 xl:w-40'>
         <Image
           className='h-full w-full object-cover'
-          src={profileImage}
+          src='/images/profile.jpg'
           alt='Picture of the author'
           width={160}
           height={160}
