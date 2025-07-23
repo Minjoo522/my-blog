@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { cache } from 'react';
 
 export type Post = {
   id: string;
@@ -16,12 +17,12 @@ export type PostData = Post & {
   prev: Post | null;
 };
 
-export async function getAllPosts(): Promise<Post[]> {
+export const getAllPosts = cache(async () => {
   const filePath = path.join(process.cwd(), 'data', 'posts.json');
   return readFile(filePath, 'utf-8')
     .then<Post[]>(JSON.parse)
     .then((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)));
-}
+});
 
 export async function getPostData(notionPageId: string): Promise<PostData> {
   const posts = await getAllPosts();

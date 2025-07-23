@@ -1,4 +1,4 @@
-import { getPostData } from '@/service/posts';
+import { getAllPosts, getPostData } from '@/service/posts';
 import Image from 'next/image';
 import CategoryButton from '@/components/categories/CategoryButton';
 import NotionPost from '@/components/posts/NotionPost';
@@ -7,15 +7,10 @@ import { Metadata, ResolvingMetadata } from 'next';
 import AdjacentPostCard from '@/components/AdjacentPostCard';
 import { SITE_URL } from '@/constants/constants';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
+type Params = Promise<{ slug: string }>;
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const params = await props.params;
-  const { slug } = params;
+export async function generateMetadata({ params }: { params: Params }, parent: ResolvingMetadata): Promise<Metadata> {
+  const { slug } = await params;
 
   const { title, description, imageUrl, notionPageId } = await getPostData(slug);
 
@@ -26,14 +21,13 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     description,
     openGraph: {
       url: `${SITE_URL}/posts/${notionPageId}`,
-      images: imageUrl && [`${SITE_URL}${imageUrl}`, ...previousImages],
+      images: imageUrl ? [`${SITE_URL}${imageUrl}`, ...previousImages] : [...previousImages],
     },
   };
 }
 
-export default async function PostPage(props: Props) {
-  const params = await props.params;
-  const { slug } = params;
+export default async function PostPage({ params }: { params: Params }) {
+  const { slug } = await params;
 
   const { title, date, category, imageUrl, notionPageId, next, prev } = await getPostData(slug);
 
@@ -61,4 +55,11 @@ export default async function PostPage(props: Props) {
       </section>
     </article>
   );
+}
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.slice(0, 5).map((post) => ({
+    slug: post.notionPageId,
+  }));
 }

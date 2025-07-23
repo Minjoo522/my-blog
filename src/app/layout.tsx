@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/constants/constants';
+import { Suspense } from 'react';
 
 const sans = Open_Sans({ subsets: ['latin'] });
 
@@ -62,11 +63,13 @@ export default function RootLayout({
   return (
     <html lang='en' className={sans.className}>
       <body className='max mx-auto flex w-full flex-col'>
-        <ThemeProvider>
-          <Header />
-          <main className='grow'>{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <Suspense>
+          <ThemeProvider>
+            <Header />
+            <main className='grow'>{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );

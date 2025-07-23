@@ -5,9 +5,10 @@ import dynamic from 'next/dynamic';
 import { useTheme } from '@/context/ThemeContext';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ExtendedRecordMap } from 'notion-types';
 
 type Props = {
-  recordMap: any;
+  recordMap: ExtendedRecordMap;
 };
 
 const Code = dynamic(

@@ -45,3 +45,12 @@ body {
 .notion-simple-table td {
     border: 1px solid var(--fg-color-1) !important;
 }
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}

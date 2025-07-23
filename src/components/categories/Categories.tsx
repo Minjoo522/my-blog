@@ -27,9 +27,9 @@ export default function Categories({ categories }: Props) {
   return (
     <section className='w-full'>
       <h2 className='mb-4 text-lg font-semibold'>Categories</h2>
-      <ul className='flex flex-col gap-2'>
+      <ul className='scrollbar-hide flex flex-row gap-2 overflow-x-auto xl:flex-col xl:overflow-visible'>
         {categories.map((category) => (
-          <li key={category}>
+          <li key={category} className='shrink-0'>
             <CategoryNavButton label={category} selected={selected === category} onClick={() => onClick(category)} />
           </li>
         ))}
