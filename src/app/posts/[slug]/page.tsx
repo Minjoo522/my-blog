@@ -6,6 +6,7 @@ import { fetchNotionPage } from '@/lib/notion';
 import { Metadata, ResolvingMetadata } from 'next';
 import AdjacentPostCard from '@/components/AdjacentPostCard';
 import { SITE_URL } from '@/constants/constants';
+import GiscusComment from '@/components/GiscusComment';
 
 type Params = Promise<{ slug: string }>;
 
@@ -48,6 +49,9 @@ export default async function PostPage({ params }: { params: Params }) {
       </div>
       <section className='mt-10 mb-20'>
         <NotionPost recordMap={recordMap} />
+      </section>
+      <section className='mb-20 sm:px-6 md:px-12 lg:px-32 xl:px-80'>
+        <GiscusComment />
       </section>
       <section className='flex shadow-md'>
         {prev && <AdjacentPostCard post={prev} type='prev' />}
