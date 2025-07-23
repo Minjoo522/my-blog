@@ -46,7 +46,7 @@ export default async function PostPage({ params }: { params: Params }) {
           <p className='mt-1 text-sm text-white/80'>{date}</p>
         </div>
       </div>
-      <section className='mb-20'>
+      <section className='mt-10 mb-20'>
         <NotionPost recordMap={recordMap} />
       </section>
       <section className='flex shadow-md'>
