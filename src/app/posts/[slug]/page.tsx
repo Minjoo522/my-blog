@@ -2,7 +2,7 @@ import { getAllPosts, getPostData } from '@/service/posts';
 import Image from 'next/image';
 import CategoryButton from '@/components/categories/CategoryButton';
 import NotionPost from '@/components/posts/NotionPost';
-import { fetchNotionPage } from '@/service/notion';
+import { fetchNotionPage } from '@/lib/notion';
 import { Metadata, ResolvingMetadata } from 'next';
 import AdjacentPostCard from '@/components/AdjacentPostCard';
 import { SITE_URL } from '@/constants/constants';

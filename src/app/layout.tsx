@@ -54,6 +54,12 @@ export const metadata: Metadata = {
       url: SITE_URL,
     },
   ],
+
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss',
+    },
+  },
 };
 
 export default function RootLayout({
