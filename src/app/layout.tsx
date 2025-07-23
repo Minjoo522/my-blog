@@ -60,6 +60,10 @@ export const metadata: Metadata = {
       'application/rss+xml': '/rss',
     },
   },
+
+  verification: {
+    google: '5TelaBbR5FfJCtxvqJZ2nPdKVL2k1X5jP98Tr0hqHZg',
+  },
 };
 
 export default function RootLayout({
