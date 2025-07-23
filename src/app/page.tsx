@@ -5,7 +5,7 @@ import Categories from '@/components/categories/Categories';
 
 export default async function HomePage() {
   const posts = await getAllPosts();
-  const categories = ['All Categories', ...new Set(posts.flatMap((p) => (p.category ? [p.category] : [])))];
+  const categories = ['All', ...new Set(posts.flatMap((p) => (p.category ? [p.category] : [])))];
 
   return (
     <div className='mx-auto w-full max-w-[1200px] px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-10 lg:px-8 xl:px-10'>

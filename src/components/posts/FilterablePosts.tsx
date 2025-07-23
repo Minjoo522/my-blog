@@ -16,7 +16,7 @@ export default function FilterablePosts({ posts }: Props) {
 
   const filtered = useMemo(() => {
     return posts.filter((post) => {
-      const matchCategory = category && category !== 'All Categories' ? post.category === category : true;
+      const matchCategory = category && category !== 'All' ? post.category === category : true;
       const matchKeyword = keyword ? post.title.toLowerCase().includes(keyword) : true;
       return matchCategory && matchKeyword;
     });
