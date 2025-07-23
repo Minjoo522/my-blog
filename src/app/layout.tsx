@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/constants/constants';
 import { Suspense } from 'react';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const sans = Open_Sans({ subsets: ['latin'] });
 
@@ -70,6 +71,7 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </Suspense>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
       </body>
     </html>
   );
