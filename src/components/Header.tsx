@@ -12,7 +12,7 @@ export default function Header() {
   const [showSearchModal, setShowSearchModal] = useState(false);
 
   return (
-    <header className='sticky top-0 z-50 border-b border-zinc-200 bg-white/70 backdrop-blur-md transition-colors dark:border-zinc-700 dark:bg-zinc-900/60'>
+    <header className='fixed top-0 left-0 z-50 w-full border-b border-zinc-200 bg-white/70 backdrop-blur-md transition-colors dark:border-zinc-700 dark:bg-zinc-900/60'>
       <div className='mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6'>
         <Link href='/'>
           <h1 className='text-xl font-bold sm:text-2xl md:text-3xl'>minjoo.dev</h1>

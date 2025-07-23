@@ -77,7 +77,7 @@ export default function RootLayout({
         <Suspense>
           <ThemeProvider>
             <Header />
-            <main className='grow'>{children}</main>
+            <main className='grow pt-[64px]'>{children}</main>
             <Footer />
           </ThemeProvider>
         </Suspense>
